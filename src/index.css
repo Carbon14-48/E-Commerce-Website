@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Story+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap");
+@import "tailwindcss";
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.dark) {
+    color-scheme: light !important;
+  }
+}
+
+.dark {
+  color-scheme: dark !important;
+}
+@theme {
+}
+@variant dark (.dark &);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Story Script", sans-serif;
+  font-weight: 500;
+}
+body:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
+  font-family: "Libre Baskerville", serif;
+  font-weight: 500;
+}
