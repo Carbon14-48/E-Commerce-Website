@@ -1,11 +1,36 @@
-/* eslint-disable no-unused-vars */
-import { useState, useEffect } from "react";
-import Navbar from "./components/Navbar";
+import { ThemeProvider } from "./components/ThemeProvider.jsx";
+import {
+  createRoutesFromElements,
+  createBrowserRouter,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
+import ProductsPage from "./pages/ProductsPage.jsx";
+import HomePage from "./pages/HomePage.jsx";
+import CheckoutPage from "./pages/CheckoutPage.jsx";
+import NavbarRouter from "./Router/NavbarRouter.jsx";
+import FullPageRouter from "./Router/FullPageRouter.jsx";
+import UserPage from "./pages/UserPage.jsx";
 function App() {
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <>
+        <Route element={<NavbarRouter />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="products" element={<ProductsPage />} />
+        </Route>
+        <Route element={<FullPageRouter />}>
+          <Route path="checkout" element={<CheckoutPage />} />
+          <Route path="user" element={<UserPage />} />
+        </Route>
+      </>
+    )
+  );
+
   return (
-    <>
-      <Navbar />
-    </>
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
   );
 }
 
