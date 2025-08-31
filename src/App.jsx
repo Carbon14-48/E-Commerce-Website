@@ -11,6 +11,9 @@ import CheckoutPage from "./pages/CheckoutPage.jsx";
 import NavbarRouter from "./Router/NavbarRouter.jsx";
 import FullPageRouter from "./Router/FullPageRouter.jsx";
 import UserPage from "./pages/UserPage.jsx";
+import { CartProvider } from "./customHooks/CartContext.jsx";
+import { ProductsProvider } from "./customHooks/ProductsContext.jsx";
+
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -28,9 +31,13 @@ function App() {
   );
 
   return (
-    <ThemeProvider>
-      <RouterProvider router={router} />
-    </ThemeProvider>
+    <ProductsProvider>
+      <CartProvider>
+        <ThemeProvider>
+          <RouterProvider router={router} />
+        </ThemeProvider>
+      </CartProvider>
+    </ProductsProvider>
   );
 }
 
