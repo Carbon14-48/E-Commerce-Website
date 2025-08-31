@@ -42,15 +42,16 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div
-      className="relative h-screen w-full"
-      style={{
-        backgroundImage: `url(${backgrounds[currentBg]})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
+    <div className="relative h-screen w-full overflow-hidden">
+      {backgrounds.map((bg, index) => (
+        <div
+          key={index}
+          className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ${
+            index === currentBg ? "opacity-100" : "opacity-0"
+          }`}
+          style={{ backgroundImage: `url(${bg})` }}
+        />
+      ))}
       <div className="absolute inset-0 bg-black opacity-40"></div>
 
       <div className="relative z-10 h-full flex items-center justify-center">
