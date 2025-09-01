@@ -4,7 +4,7 @@ import { ProductsContext } from "../customHooks/ProductsContext";
 import CheckoutProductCard from "../components/CheckoutProductCard";
 
 export default function CheckoutPage() {
-  const { cart } = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
   const { products, loading, error } = useContext(ProductsContext);
 
   const idCount = new Map();
@@ -24,10 +24,12 @@ export default function CheckoutPage() {
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
-
+  function clearCart() {
+    setCart(() => []);
+  }
   return (
-    <div className="max-w-2xl mx-auto p-8 bg-white dark:bg-slate-700 rounded-lg shadow-lg mt-10">
-      <h2 className="text-2xl font-bold mb-6 text-center text-blue-600">
+    <div className="max-w-2xl mx-auto p-8 bg-white dark:bg-slate-700 rounded-lg shadow-lg mt-[73px]">
+      <h2 className="text-4xl font-bold mb-6 text-center text-cyan-500">
         🛒 Checkout
       </h2>
       {cartProducts.length === 0 && (
@@ -43,6 +45,14 @@ export default function CheckoutPage() {
           Total: ${grandTotal.toFixed(2)}
         </div>
       )}
+      <button
+        className="text-slate-200 border-2 border-red-500 p-2 shadow-lg hover:scale-105 cursor-pointer transition-all"
+        onClick={() => {
+          clearCart();
+        }}
+      >
+        Clear Cart
+      </button>
     </div>
   );
 }

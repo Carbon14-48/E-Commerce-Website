@@ -7,10 +7,11 @@ import whiteLogo from "../assets/whiteLogo.svg";
 import blackLogo from "../assets/blackLogo.svg";
 import { Link } from "react-router-dom";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import { useState } from "react";
-
+import { useContext, useState } from "react";
+import { CartContext } from "../customHooks/CartContext";
 export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
+  const { cart, setCart } = useContext(CartContext);
   const [isCollapsed, setIsCollapsed] = useState(true);
   console.log(theme);
 
@@ -52,7 +53,11 @@ export default function Navbar() {
               <Link to="/products">Products</Link>
             </li>
             <li className="cursor-pointer flex gap-2 border-b-2 border-transparent p-1 hover:border-blue-500 transition">
-              <ShoppingCartCheckoutOutlinedIcon className="text-blue-500 animate-bounce" />
+              <ShoppingCartCheckoutOutlinedIcon
+                className={`text-blue-500 ${
+                  cart.length === 0 ? "animate-none" : "animate-bounce"
+                }`}
+              />{" "}
               <Link to="/checkout">Checkout</Link>
             </li>
             <li className="cursor-pointer flex gap-2 border-b-2 border-transparent p-1 hover:border-blue-500 transition">
@@ -94,7 +99,11 @@ export default function Navbar() {
               </Link>
             </li>
             <li className="cursor-pointer flex gap-2 border-b-2 border-transparent p-1 hover:border-blue-500 transition">
-              <ShoppingCartCheckoutOutlinedIcon className="text-blue-500 animate-bounce" />
+              <ShoppingCartCheckoutOutlinedIcon
+                className={`text-blue-500 ${
+                  cart.length === 0 ? "animate-none" : "animate-bounce"
+                }`}
+              />
               <Link to="/checkout" onClick={() => setIsCollapsed(true)}>
                 Checkout
               </Link>

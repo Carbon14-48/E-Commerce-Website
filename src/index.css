@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Story+Script&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap");
 @import "tailwindcss";
 
@@ -20,7 +20,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Story Script", sans-serif;
+  font-family: "PT Sans Narrow", sans-serif;
   font-weight: 500;
 }
 body:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
